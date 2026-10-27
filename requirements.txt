@@ -1,0 +1,26 @@
+# SmartTrack AI - Dependencies
+# Core
+numpy>=1.24.0
+scipy>=1.10.0
+opencv-python>=4.7.0
+filterpy>=1.4.5
+PyYAML>=6.0
+
+# Person Detection
+ultralytics>=8.0.0
+
+# Web Interface
+streamlit>=1.28.0
+plotly>=5.15.0
+pandas>=2.0.0
+
+# Evaluation (optional - install if running benchmark evaluation)
+# pip install motmetrics
+# pip install trackeval  # For HOTA metrics
+
+# Testing
+pytest>=7.0.0
+
+# Optional: Deep appearance features (install if GPU available)
+# torch>=2.0.0
+# torchvision>=0.15.0

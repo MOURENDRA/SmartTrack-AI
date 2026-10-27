@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual Environment
+venv/
+env/
+.env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Project outputs
+outputs/
+*.mp4
+*.avi
+*.mov
+
+# Model weights (downloaded separately)
+*.pt
+*.onnx
+*.pth
+
+# Data (downloaded separately)
+data/datasets/*/
+!data/datasets/.gitkeep
+
+# Temporary
+*.tmp
+*.bak
+scratch/

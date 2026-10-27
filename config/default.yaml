@@ -1,0 +1,46 @@
+# SmartTrack-AI Configuration
+# Default tracking pipeline parameters
+
+detector:
+  model_name: "yolov8n"           # YOLO detector model architecture/weights
+  confidence_threshold: 0.5        # Minimum detection confidence threshold
+  person_class_id: 0              # Target class ID for person in COCO dataset
+  input_size: 640                 # Input image inference resolution (pixels)
+
+tracker:
+  mode: "enhanced"                # Tracking mode: 'baseline' (IoU-only) or 'enhanced' (Appearance + IoU)
+  max_age: 30                     # Maximum consecutive frames to keep an unassociated track before removal
+  min_hits: 3                     # Minimum consecutive hits required to confirm a tentative track
+  iou_threshold: 0.3              # Minimum IoU overlap threshold for matching
+
+motion:
+  process_noise: 1.0              # Process noise multiplier for Kalman filter (covariance Q)
+  measurement_noise: 1.0          # Measurement noise multiplier for Kalman filter (covariance R)
+  dt: 0.03333333333333333         # Time step between frames (1/30s for standard 30 FPS video)
+
+appearance:
+  feature_dim: 512                # Dimension of extracted appearance feature vector
+  weight: 0.4                     # Weight of appearance cost in matching
+  use_deep_reid: false            # Whether to use deep CNN feature extractor instead of color histogram
+
+association:
+  motion_weight: 0.6              # Motion cost weight (alpha)
+  appearance_weight: 0.4          # Appearance cost weight (1 - alpha)
+  gate_threshold: 0.7             # Gating threshold to discard unlikely track-detection pairs
+  lambda_iou: 0.5                 # Weight factor for IoU distance in association cost
+  lambda_appearance: 0.5          # Weight factor for appearance cosine distance in association cost
+  max_cosine_distance: 0.4        # Maximum allowed cosine distance for appearance matching
+
+track_memory:
+  max_lost_age: 60                # Maximum frames a lost track is retained in memory for recovery
+  min_recovery_confidence: 0.5    # Minimum detection confidence needed to recover a lost track
+  appearance_decay: 0.95          # Exponential moving average decay factor for track appearance features
+
+video:
+  output_fps: 25                  # Frame rate for rendered output videos
+  output_codec: "mp4v"            # FourCC video codec for OpenCV VideoWriter
+  max_resolution: 1280            # Maximum dimension for video processing/display
+
+evaluation:
+  dataset_root: "data/datasets"   # Root directory containing benchmark evaluation datasets (e.g. MOT17/20)
+  output_dir: "outputs"           # Directory for tracking results, metrics, and visualization artifacts
